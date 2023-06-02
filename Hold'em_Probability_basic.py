@@ -70,6 +70,18 @@ def has_fullhouse(cards):
     
     return False
 
+def has_straight(cards):
+    number=[]
+    for n in cards:
+        number.append(n[-1])
+    number.sort()
+    for i in range(len(number) - 4):
+        if number[i]+1 in number and number[i]+2 in number and number[i]+3 in number and number[i]+4 in number:
+            return True
+        elif 1 in number and 10 in number and 11 in number and 12 in number and 13 in number:
+            return True
+        return False
+    
 def has_set(cards):
     number=[]
     for c in cards:
@@ -112,6 +124,7 @@ sf=0 #Number of straight flush
 fok=0 #Number of four of a kind
 fh=0 #Number of fullhouse
 flush=0 #Number of flush
+straight=0 #Number of straight
 st=0 #Number of set
 tp=0 #Number of two pairs
 p=0 #Number of one pair
@@ -132,6 +145,8 @@ if __name__=="__main__":
             fh+=1
         elif has_flush(hands):
             flush+=1
+        elif has_straight(hands):
+            straight+=1
         elif has_set(hands):
             st+=1
         elif has_twopair(hands):
@@ -145,7 +160,8 @@ if __name__=="__main__":
     print(fok,"times of four of a kind, with a probability of:",fok/N,"\n")
     print(fh,"times of full house, with a probability of:",fh/N,"\n")
     print(flush,"times of flush, with a probability of:",flush/N,"\n")
-    print(st,"times of straight, with a probability of:",st/N,"\n")
+    print(straight,"times of straight, with a probability of:",straight/N,"\n")
+    print(st,"times of set, with a probability of:",st/N,"\n")
     print(tp,"times of two pairs, with a probability of:",tp/N,"\n")
     print(p,"times of a pair, with a probability of:",p/N,"\n")
     print(h,"times of high cards, with a probability of:",h/N,"\n")
