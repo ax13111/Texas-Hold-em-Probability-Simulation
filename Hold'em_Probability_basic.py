@@ -85,8 +85,9 @@ def has_twopair(cards):
     for c in cards:
         number.append(c[-1])
     for n in number:
-        check.append(number.count(n))
-    if check.count(1)==1 and check.count(2)==4:
+        check.append(number.count(n)) #I count the frequency of numbers appear in the combination and create a list named _check_ to store the frequency 
+        
+    if check.count(1)==3 and check.count(2)==4: #Check the frequency. Logically, since we consider public cards and hands(5+2=7cards), so if we have two pairs then the frequency will be 1,1,1,2,2,2,2
         return True
     return False
 
